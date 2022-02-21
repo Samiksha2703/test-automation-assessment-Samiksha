@@ -5,11 +5,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Reporter;
+import utils.PropertiesFile;
 
 
 public class DriverUtils {
     private static DriverUtils instance = null;
     ThreadLocal<RemoteWebDriver> webdriver = new ThreadLocal<RemoteWebDriver>();
+    PropertiesFile propertiesFile;
 
     private DriverUtils() {
     }
@@ -33,7 +35,7 @@ public class DriverUtils {
             ChromeDriver chromedriver = new ChromeDriver(options);
             chromedriver.manage().window().maximize();
             chromedriver.manage().deleteAllCookies();
-            chromedriver.get("https://icehrm-open.gamonoid.com/");
+            chromedriver.get(propertiesFile.getProperties("application_URL"));
             webdriver.set(chromedriver);
         } catch (Exception e) {
             System.out.println("[Error] Driver is not intialized " + e.getMessage());
