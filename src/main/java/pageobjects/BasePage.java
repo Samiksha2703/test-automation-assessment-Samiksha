@@ -1,10 +1,7 @@
 package pageobjects;
 
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,8 +21,14 @@ public class BasePage {
 
     // Test method to enter the text
     protected static void enterText(String textToEnter, WebElement element) {
-        element.clear();
-        element.sendKeys(textToEnter);
+//            element.clear();
+            element.sendKeys(Keys.BACK_SPACE);
+            element.sendKeys(textToEnter);
+    }
+
+    public static void setAttribute(WebElement element, String attName, String attValue) {
+        driver.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
+                element, attName, attValue);
     }
 
     // Test method to click on Element
@@ -48,6 +51,11 @@ public class BasePage {
     // Test method to get the text of element
     protected static String getTextOfElement(WebElement element) {
         return element.getText();
+    }
+
+    // Upload File
+    protected static void uploadFile(WebElement element, String filePath) {
+        element.sendKeys(filePath);
     }
 
     public <TPage extends BasePage> TPage getClass(Class<TPage> anyPage) {

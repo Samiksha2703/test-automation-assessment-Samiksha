@@ -16,8 +16,8 @@ public class BaseTest {
         page = new BasePage(driverutil.getDriver());
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void afterMethod() {
-        driverutil.getDriver().quit();
-    }
+//    @AfterMethod(alwaysRun = true)
+//    public void afterMethod() {
+//        driverutil.getDriver().quit();
+//    }
 }

@@ -19,12 +19,11 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public boolean loginIntoTheApplication(String userName, String userPassword){
+    public DashboardPage loginIntoTheApplication(String userName, String userPassword) {
         waitForElementToBeInvisible(username);
-        enterText(userName,username);
-        enterText(userPassword,password);
+        enterText(userName, username);
+        enterText(userPassword, password);
         clickOnElement(loginButton);
-        return true;
+        return getClass(DashboardPage.class);
     }
-
 }

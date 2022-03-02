@@ -1,11 +1,8 @@
 package pageobjects;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
-
-import javax.swing.*;
 
 public class DashboardPage extends BasePage {
 
@@ -14,6 +11,9 @@ public class DashboardPage extends BasePage {
 
     @FindBy(xpath = "//a//span[@class='flag-icon flag-icon-un']")
     private static WebElement EN;
+
+    @FindBy(xpath = "//a[text()=' Qualifications ']")
+    private static WebElement qualificationsTab;
 
     @FindBy(xpath = "//i[@class='fa fa-globe']")
     private static WebElement travelManagement;
@@ -26,10 +26,10 @@ public class DashboardPage extends BasePage {
         super(driver);
     }
 
-    public void navigateToMyTravel() throws InterruptedException {
-        waitForElementToBeInvisible(travelManagement);
-        clickOnElement(travelManagement);
-        clickOnElement(travel);
+    public QualificationsPage navigateToQualificationsPage() {
+        waitForElementToBeInvisible(qualificationsTab);
+        clickOnElement(qualificationsTab);
+        return getClass(QualificationsPage.class);
     }
 
     public void changeLanguage() {

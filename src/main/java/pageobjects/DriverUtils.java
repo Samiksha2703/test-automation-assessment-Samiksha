@@ -7,6 +7,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Reporter;
 import utils.PropertiesFile;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class DriverUtils {
     private static DriverUtils instance = null;
@@ -33,6 +35,7 @@ public class DriverUtils {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("disable-popup-blocking");
             ChromeDriver chromedriver = new ChromeDriver(options);
+            chromedriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             chromedriver.manage().window().maximize();
             chromedriver.manage().deleteAllCookies();
             chromedriver.get(propertiesFile.getProperties("application_URL"));

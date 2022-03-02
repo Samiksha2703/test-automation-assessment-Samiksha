@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import static utils.JSONUtil.getValue;
+
 public class QualificationsPage extends BasePage {
 
     public QualificationsPage(RemoteWebDriver driver) {
@@ -47,10 +49,10 @@ public class QualificationsPage extends BasePage {
         waitForElementToBeInvisible(selectSkill);
         clickOnElement(selectSkill);
         clickOnElement(programmingAndApplicationDevelopment);
-        enterText("Java,Javascrip,HTML,CSS", details);
+        enterText(getValue().get(0).getSkill(), details);
         clickOnElement(submitButton);
         waitForElementToBeInvisible(selectSkill);
-        if (skillData.getText().equalsIgnoreCase("Programming and Application Development"))
+        if (skillData.getText().equalsIgnoreCase(getValue().get(0).getDetails()))
             return true;
         else return false;
     }

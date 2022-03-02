@@ -5,7 +5,7 @@
         <classes>
             <class name="test.Qualifications">
                     <methods>
-                        <include name="addQualifications"></include>
+                        <include name="addQualificationsWithJsonData"></include>
                     </methods>
             </class>
         </classes>

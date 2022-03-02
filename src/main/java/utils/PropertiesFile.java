@@ -11,7 +11,6 @@ public class PropertiesFile {
     // Test method to get Properties from config file
     public static String getProperties(String propertyValue) {
         try {
-            System.out.println("Path "+sysPath);
             InputStream input = new FileInputStream(sysPath + "\\src\\main\\resources\\config.properties");
             prop.load(input);
         } catch (Exception e) {
