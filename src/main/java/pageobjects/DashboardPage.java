@@ -15,6 +15,9 @@ public class DashboardPage extends BasePage {
     @FindBy(xpath = "//a[text()=' Qualifications ']")
     private static WebElement qualificationsTab;
 
+    @FindBy(xpath = "//a[text()=' Emergency Contacts ']")
+    private static WebElement emergencyContactTab;
+
     @FindBy(xpath = "//i[@class='fa fa-globe']")
     private static WebElement travelManagement;
 
@@ -30,6 +33,12 @@ public class DashboardPage extends BasePage {
         waitForElementToBeInvisible(qualificationsTab);
         clickOnElement(qualificationsTab);
         return getClass(QualificationsPage.class);
+    }
+
+    public EmergencyContactsPage navigateToEmergencyContactsPage() {
+        waitForElementToBeInvisible(emergencyContactTab);
+        clickOnElement(emergencyContactTab);
+        return getClass(EmergencyContactsPage.class);
     }
 
     public void changeLanguage() {
