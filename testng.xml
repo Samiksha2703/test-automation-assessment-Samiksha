@@ -2,10 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
     <test name="add_qualifications">
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="test.Qualifications">
+            <class name="test.EmergencyContacts">
                     <methods>
-                        <include name="addQualificationsWithJsonData"></include>
+                        <include name="addEmergencyContact"></include>
                     </methods>
             </class>
         </classes>

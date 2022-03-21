@@ -2,6 +2,7 @@ package test;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageobjects.LoginPage;
 import setup.BaseTest;
@@ -25,7 +26,7 @@ public class Qualifications extends BaseTest {
         Assert.assertTrue(result);
     }
 
-    @Test()
+    @Test
     public void addQualificationsWithJsonData() {
         String userName = getValue().get(0).getUsername();
         String password = getValue().get(0).getPassword();

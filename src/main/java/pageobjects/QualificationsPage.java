@@ -40,7 +40,7 @@ public class QualificationsPage extends BasePage {
     private static WebElement skillData;
 
     public boolean addSkill() {
-        if (skillData.getText().equalsIgnoreCase("Programming and Application Development")) {
+        if (skillData.getText().equalsIgnoreCase(getValue().get(0).getDetails())) {
             clickOnElement(deleteButton);
             clickOnElement(deleteConfirmationButton);
         }

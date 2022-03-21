@@ -3,10 +3,10 @@ package pageobjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
-
-import static utils.JSONUtil.getValue;
+import utils.PropertiesFile;
 
 public class EmergencyContactsPage extends BasePage {
+    static PropertiesFile propertiesFile;
 
     public EmergencyContactsPage(RemoteWebDriver driver) {
         super(driver);
@@ -14,16 +14,12 @@ public class EmergencyContactsPage extends BasePage {
 
     @FindBy(xpath = "//div[@id='EmergencyContact']//div//div//button[text()='Add New ']")
     private static WebElement addNewContactButton;
-
     @FindBy(xpath = "//*[@id=\"grid\"]/tbody/tr/td[6]/div/img[2]")
     private static WebElement deleteButton;
-
     @FindBy(xpath = "//*[@id=\"deleteModel\"]/div/div/div[3]/button[2]")
     private static WebElement deleteConfirmationButton;
-
     @FindBy(xpath = "//*[@id=\"grid\"]/tbody/tr/td[1]")
     private static WebElement contactData;
-
     @FindBy(xpath = "//input[@id='name']")
     private static WebElement name;
     @FindBy(xpath = "//input[@id='relationship']")
@@ -38,20 +34,21 @@ public class EmergencyContactsPage extends BasePage {
     private static WebElement saveButton;
 
     public boolean addContact() {
-        if (contactData.getText().equalsIgnoreCase("ABC")) {
+        if (contactData.getText().equalsIgnoreCase(propertiesFile.getProperties("name"))) {
             clickOnElement(deleteButton);
             clickOnElement(deleteConfirmationButton);
         }
         waitForElementToBeInvisible(addNewContactButton);
         clickOnElement(addNewContactButton);
         waitForElementToBeInvisible(name);
-        enterText("ABC", name);
-        enterText("Father", relationship);
-        enterText("5478547584", home_phone);
-        enterText("9844545490", work_phone);
-        enterText("7893473489", mobile_phone);
+        enterText(propertiesFile.getProperties("name"), name);
+        enterText(propertiesFile.getProperties("relationship"), relationship);
+        enterText(propertiesFile.getProperties("homePhoneNumber"), home_phone);
+        enterText(propertiesFile.getProperties("workPhoneNumber"), work_phone);
+        enterText(propertiesFile.getProperties("mobilePhoneNumber"), mobile_phone);
         clickOnElement(saveButton);
-        if (contactData.getText().equalsIgnoreCase("ABC"))
+        waitForElementToBePresent(contactData);
+        if (contactData.getText().equalsIgnoreCase(propertiesFile.getProperties("name")))
             return true;
         else return false;
     }
